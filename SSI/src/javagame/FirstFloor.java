@@ -21,11 +21,13 @@ public class FirstFloor extends BasicGameState{
 	SpriteSheet hoboUp, hoboDown, hoboLeft, hoboRight;
 	Image mvKey;
 	boolean mvKeyCheck = false;
+	boolean ngKeyCheck = false;
+	boolean jnKeyCheck = false;
 	Animation hoboAnimationUp, hoboAnimationDown, hoboAnimationLeft, hoboAnimationRight, hobo;
 	private Rectangle hoboRect = null;
 	private boolean esc = false;
-	private boolean mvDoorMsg = false;
-	private String mvDoorMsgString = "The door is locked.";
+	private boolean doorMsg = false;
+	private String doorMsgString = "The door is locked.";
 	
 	
 	
@@ -74,8 +76,8 @@ public class FirstFloor extends BasicGameState{
 			mvKey.draw(hoboPosX + 270, hoboPosY + 125, new Color(60,0,16));
 		}
 		
-		if(mvDoorMsg == true){
-			g.drawString(mvDoorMsgString, 100, 100);
+		if(doorMsg == true){
+			g.drawString(doorMsgString, 100, 100);
 		}
 		
 		//esc menu
@@ -181,20 +183,37 @@ public class FirstFloor extends BasicGameState{
 						sbg.enterState(2);//leaving out the front door to the foyer
 					}
 				}
-				if(hobo == hoboAnimationDown){
+				if(hobo == hoboAnimationDown){ // grab the key for mv
 					if(hoboPosY > 106 && hoboPosY < 107 && hoboPosX < 87 && hoboPosX > 49){
 						if(input.isKeyDown(Input.KEY_SPACE)){
 							mvKeyCheck = true;
 						}
 					}
 				}
-				if(input.isKeyDown(Input.KEY_SPACE)){
+				
+				if(input.isKeyDown(Input.KEY_SPACE)){//check mv door
 					if(hoboPosX < 197 && hoboPosY > -770 && hoboPosY < -739 && (mvKeyCheck == true)){
 						sbg.enterState(4);
 					}if(hoboPosX < 197 && hoboPosY > -770 && hoboPosY < -739 && (mvKeyCheck == false)){
-						mvDoorMsg = true;
+						doorMsg = true;
 					}
-				}else {mvDoorMsg = false;
+				}else {doorMsg = false;
+				}
+				if(input.isKeyDown(Input.KEY_SPACE)){//check ng door
+					if(hoboPosX < 197 && hoboPosY > -587 && hoboPosY < -559 && (ngKeyCheck == true)){
+						sbg.enterState(6);
+					}if(hoboPosX < 197 && hoboPosY > -587 && hoboPosY < -559 && (ngKeyCheck == false)){
+						doorMsg = true;
+					}
+				}else {doorMsg = false;
+				}
+				if(input.isKeyDown(Input.KEY_SPACE)){//check jn door
+					if(hoboPosY > -350 && hoboPosX > 189 && hoboPosX < 239 && (jnKeyCheck == true)){
+						sbg.enterState(5);
+					}if(hoboPosY > -350 && hoboPosX > 189 && hoboPosX < 239 && (jnKeyCheck == false)){
+						doorMsg = true;
+					}
+				}else {doorMsg = false;
 				}
 				//escape menu
 				if(input.isKeyDown(Input.KEY_ESCAPE)){

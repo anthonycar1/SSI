@@ -117,7 +117,7 @@ public class Outside extends BasicGameState{
 		
 		//draw book title to screen if true
 		if (book == true){
-		g.drawString(bookTitle, 220, 160);
+		g.drawString(bookTitle, 100, 100);
 		if(book == false){
 			g.clear();
 		}
@@ -208,7 +208,7 @@ public class Outside extends BasicGameState{
 			else{
 				hoboAnimationRight.stop();
 			}
-		if(input.isKeyDown(Input.KEY_SPACE)){
+		if(input.isKeyDown(Input.KEY_SPACE)){ // check book
 			if(hoboPosX < -241 && hoboPosY > 129){
 				book = true;
 			}

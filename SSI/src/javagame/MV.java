@@ -154,6 +154,11 @@ public class MV extends BasicGameState{
 						mVMsgCheck = false;
 					
 				}
+				if(input.isKeyDown(Input.KEY_SPACE)){
+					if(hoboPosX >= 330 && hoboPosY > 49 && hoboPosY < 75){
+						sbg.enterState(3);
+					}
+				}
 				
 				
 				//escape menu
